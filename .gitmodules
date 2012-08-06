@@ -1,0 +1,12 @@
+[submodule "contrib/netsurf/buildsystem"]
+	path = contrib/netsurf/buildsystem
+	url = git://git.netsurf-browser.org/buildsystem.git
+[submodule "contrib/netsurf/libhubbub"]
+	path = contrib/netsurf/libhubbub
+	url = git://git.netsurf-browser.org/libhubbub.git
+[submodule "contrib/netsurf/json-c"]
+	path = contrib/netsurf/json-c
+	url = git://git.netsurf-browser.org/json-c.git
+[submodule "contrib/netsurf/libparserutils"]
+	path = contrib/netsurf/libparserutils
+	url = git://git.netsurf-browser.org/libparserutils.git
