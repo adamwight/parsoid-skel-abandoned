@@ -23,7 +23,7 @@ PHP_RINIT_FUNCTION(parsoid);
 PHP_RSHUTDOWN_FUNCTION(parsoid);
 PHP_MINFO_FUNCTION(parsoid);
 
-PHP_FUNCTION(confirm_parsoid_compiled);	/* For testing, remove later. */
+PHP_FUNCTION(parsoid_parse);
 
 /* 
   	Declare any global variables you may need between the BEGIN

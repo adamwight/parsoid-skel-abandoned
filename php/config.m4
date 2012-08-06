@@ -1,24 +1,22 @@
-dnl $Id$
-dnl config.m4 for extension parsoid
+PHP_ARG_ENABLE(parsoid, whether to enable parsoid support,
+  [  --enable-parsoid           Enable parsoid support])
 
-dnl Comments in this file start with the string 'dnl'.
-dnl Remove where necessary. This file will not work
-dnl without editing.
-
-dnl If your extension references something external, use with:
-
-dnl PHP_ARG_WITH(parsoid, for parsoid support,
-dnl Make sure that the comment is aligned:
-dnl [  --with-parsoid             Include parsoid support])
-
-dnl Otherwise use enable:
-
-dnl PHP_ARG_ENABLE(parsoid, whether to enable parsoid support,
-dnl Make sure that the comment is aligned:
-dnl [  --enable-parsoid           Enable parsoid support])
+PHP_ARG_WITH(libparsoid, libparsoid install dir,
+  [  --with-libparsoid[=DIR]], no, no)
 
 if test "$PHP_PARSOID" != "no"; then
-  dnl Write more examples of tests here...
+
+  BUILD_DIR="../build"
+  dnl TODO:
+  dnl PHP_CHECK_LIBRARY(parsoid, unmangled_parsoid_nothing,
+  dnl [
+  dnl   PHP_ADD_INCLUDE($BUILD_DIR/include)
+  dnl   PHP_ADD_LIBRARY_WITH_PATH(parsoid, $BUILD_DIR, PARSOID_SHARED_LIBADD)
+  dnl ], [
+  dnl   AC_MSG_ERROR(parsoid module requires libparsoid)
+  dnl ], [
+  dnl   -lstdc++ -lhubbub -L$BUILD_DIR/lib
+  dnl ])
 
   dnl # --with-parsoid -> check with-path
   dnl SEARCH_PATH="/usr/local /usr"     # you might want to change this
@@ -57,7 +55,7 @@ if test "$PHP_PARSOID" != "no"; then
   dnl   -L$PARSOID_DIR/lib -lm
   dnl ])
   dnl
-  dnl PHP_SUBST(PARSOID_SHARED_LIBADD)
+  PHP_SUBST(PARSOID_SHARED_LIBADD)
 
   PHP_NEW_EXTENSION(parsoid, parsoid.c, $ext_shared)
 fi

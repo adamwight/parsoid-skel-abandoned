@@ -8,6 +8,8 @@
 #include "ext/standard/info.h"
 #include "php_parsoid.h"
 
+//#include "html_parser.h"
+
 /* If you declare any globals in php_parsoid.h uncomment this:
 ZEND_DECLARE_MODULE_GLOBALS(parsoid)
 */
@@ -20,7 +22,7 @@ static int le_parsoid;
  * Every user visible function must have an entry in parsoid_functions[].
  */
 const zend_function_entry parsoid_functions[] = {
-	PHP_FE(confirm_parsoid_compiled,	NULL)		/* For testing, remove later. */
+	PHP_FE(parsoid_parse,	NULL)
 	{NULL, NULL, NULL}	/* Must be the last line in parsoid_functions[] */
 };
 /* }}} */
@@ -130,20 +132,19 @@ PHP_MINFO_FUNCTION(parsoid)
    purposes. */
 
 /* Every user-visible function in PHP should document itself in the source */
-/* {{{ proto string confirm_parsoid_compiled(string arg)
-   Return a string to confirm that the module is compiled in */
-PHP_FUNCTION(confirm_parsoid_compiled)
+/* {{{ proto string parsoid_parse(string arg) */
+PHP_FUNCTION(parsoid_parse)
 {
 	char *arg = NULL;
 	int arg_len, len;
-	char *strg;
+        long result;
 
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &arg, &arg_len) == FAILURE) {
 		return;
 	}
 
-	len = spprintf(&strg, 0, "Congratulations! You have successfully modified ext/%.78s/config.m4. Module %.78s is now compiled into PHP.", "parsoid", arg);
-	RETURN_STRINGL(strg, len, 0);
+        //result = parse_html(arg);
+	RETURN_LONG(result);
 }
 /* }}} */
 /* The previous line is meant for vim and emacs, so it can correctly fold and 
